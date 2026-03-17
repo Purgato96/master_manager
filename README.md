@@ -1,4 +1,4 @@
-#Master Manager System
+# Master Manager System
 
 ![Laravel](https://img.shields.io/badge/Laravel-12+-red.svg?logo=laravel&logoColor=white)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3-green.svg?logo=vuedotjs)
