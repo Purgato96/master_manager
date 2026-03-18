@@ -11,7 +11,7 @@ jobs:
       - name: 2. Instalar o Node.js e NPM
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Você pode mudar para a versão que utiliza
+          node-version: '24.14.0'
 
       - name: 3. Instalar dependências do Vue
         working-directory: ./frontend
@@ -21,7 +21,11 @@ jobs:
         working-directory: ./frontend
         run: npm run lint
 
-      - name: 5. Executar o Cypress
+      - name: 5. Executar o build
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: 6. Executar o Cypress
         working-directory: ./frontend
         run: npm run test:e2e
 
@@ -63,9 +67,9 @@ jobs:
         working-directory: ./backend
         run: composer install --prefer-dist --no-interaction
 
-      - name: 4. Executar o Linter (PHP-CS-Fixer)
+      - name: 4. Executar o Pint
         working-directory: ./backend
-        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+        run: vendor/bin/pint --test
 
       - name: 5. Preparando o banco de dados
         working-directory: ./backend
