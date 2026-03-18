@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-          	cd /home/ubuntu/master_manager
-          	git pull origin main
-          	docker compose up -d --build
-          	docker exec purga_backend php artisan migrate --force
+            cd /home/ubuntu/master_manager
+            git pull origin main
+            docker compose up -d --build
+            docker exec purga_backend php artisan migrate --force
