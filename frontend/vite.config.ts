@@ -14,6 +14,14 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
+  server: {
+    host: true,
+    port: 3000,
+    strictPort: true,
+    hmr: {
+      host: 'basedopurga.com.br',
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
