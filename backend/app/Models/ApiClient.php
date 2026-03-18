@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class ApiClient extends Model
-
 {
     protected $fillable = ['name', 'email', 'plain_key', 'api_key', 'is_active'];
 

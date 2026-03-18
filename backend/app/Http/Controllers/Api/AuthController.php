@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ApiClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -45,7 +43,7 @@ class AuthController extends Controller
 
         return response()->json([
             'api_key' => $client->plain_key,
-            'client' => $client->only('id', 'name', 'email', 'requests_count')
+            'client' => $client->only('id', 'name', 'email', 'requests_count'),
         ]);
     }
 
@@ -59,7 +57,7 @@ class AuthController extends Controller
         $newPlainKey = Str::random(40);
         $client->update([
             'plain_key' => $newPlainKey,
-            'api_key' => hash('sha256', $newPlainKey)
+            'api_key' => hash('sha256', $newPlainKey),
         ]);
 
         return response()->json(['new_api_key' => $newPlainKey]);

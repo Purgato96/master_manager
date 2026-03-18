@@ -17,11 +17,11 @@ class VerifyApiKey
     {
         $apiKey = $request->header('X-API-KEY') ?? $request->bearerToken();
 
-        if (!$apiKey || !($client = ApiClient::where('api_key', hash('sha256', $apiKey))->first())) {
+        if (! $apiKey || ! ($client = ApiClient::where('api_key', hash('sha256', $apiKey))->first())) {
             return response()->json(['error' => 'API Key inválida'], 401);
         }
 
-        if (!$client->is_active) {
+        if (! $client->is_active) {
             return response()->json(['error' => 'API Key desativada'], 403);
         }
 
@@ -30,5 +30,4 @@ class VerifyApiKey
 
         return $next($request);
     }
-
 }
