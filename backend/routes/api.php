@@ -24,8 +24,6 @@ Route::get('/v1/status', function () {
         'timestamp' => now()->toISOString(),
         'endpoints' => [
             'auth' => '/api/v1/auth/*',
-            'rooms' => '/api/v1/rooms',
-            'messages' => '/api/v1/rooms/{room}/messages',
         ],
     ]);
 });
