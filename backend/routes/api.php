@@ -26,8 +26,6 @@ Route::get('/v1/status', function () {
             'auth' => '/api/v1/auth/*',
             'rooms' => '/api/v1/rooms',
             'messages' => '/api/v1/rooms/{room}/messages',
-            'private-conversations' => '/api/v1/private-conversations',
-            'websocket' => 'pusher.com/channels',
         ],
     ]);
 });
