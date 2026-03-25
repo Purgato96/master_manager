@@ -19,7 +19,7 @@
 - **Optimized PostgreSQL** with JSONB + GIN indexes
 - **Secure API Keys** with rate limiting and statistics
 - **Admin Dashboard** built with Vue 3 + TailwindCSS
-- **Complete Docker Compose** (PostgreSQL, Redis, Mailpit)
+- **Complete Docker Compose** (PostgreSQL, Redis)
 - **Scalable** for global production
 
 ## 🛠️ Tech Stack
@@ -38,15 +38,15 @@ Development: Mailpit (fake SMTP) + Vite
 git clone https://github.com/Purgato96/master_manager.git
 cd master_manager
 
-# 2. Backend Laravel
-mkdir -p backend && cd backend
-curl -s https://laravel.build/master-manager-api | bash
-cd ..
+# 2. Configure docker-compose.yml
+cp docker-compose.yml.example docker-compose.yml
+nano docker-compose.yml
+Adjust docker-compose.yml configuration
 
-# 3. Frontend Vue
-mkdir -p frontend && cd frontend
-npm create vue@latest . -- --typescript
-npm install && cd ..
+# 3. Configure .env in the backend/
+cp .env.example .env
+nano .env
+Adjust database configuration equal to docker-composer.yml
 
 # 4. Start everything!
 docker compose up -d --build
@@ -54,16 +54,14 @@ docker compose up -d --build
 # 5. Finish setup
 docker compose exec backend php artisan key:generate
 docker compose exec backend php artisan migrate
-docker compose exec backend php artisan db:seed
 ```
 
 ### 📱 Access Points
-| Service | URL | 
+| Service | URL |
 |---------|-----|
-| **Frontend** | http://localhost:3000 | 
-| **Backend API** | http://localhost:8000 | 
-| **Admin Dashboard** | http://localhost:8000/admin | 
-| **Mailpit (Emails)** | http://localhost:8025 | 
+| **Frontend** | http://localhost:3000 |
+| **Backend API** | http://localhost:8000 |
+| **Admin Dashboard** | http://localhost:3000/admin |
 
 ## 🔑 Getting Started with API
 
@@ -166,7 +164,8 @@ master_manager/
 │   ├── routes/
 │   │   ├── api.php
 │   │   └── web.php
-│   └── bootstrap/app.php
+│   ├── bootstrap/app.php
+    └── .env
 │
 ├── frontend/                     # Vue 3 + Tailwind
 │   ├── src/
@@ -177,11 +176,11 @@ master_manager/
 │   │   │   └── index.ts
 │   │   ├── components/
 │   │   └── assets/
+│   ├──.env
 │   ├── tailwind.config.js
 │   └── vite.config.ts
 │
 ├── docker-compose.yml
-├── .env.example
 └── README.md
 ```
 
@@ -370,21 +369,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Matheus Purgato** (Purga)  
+**Matheus Purgato**
 - **GitHub:** [@Purgato96](https://github.com/Purgato96)
 - **LinkedIn:** [linkedin.com/in/purgato](https://linkedin.com/in/matheus-purgato)
-- **Email:** contact@purgato.dev
 
-**Full-Stack Developer** | Laravel + Vue.js Specialist  
+
+**Full-Stack Developer** | Laravel + Vue.js Specialist
 📍 Ribeirão Preto, SP - Brazil
 
-**Stack:** Laravel, Vue.js, TailwindCSS, PostgreSQL, Docker  
-**Experience:** 9+ years in web development
+**Stack:** Laravel, Vue.js, TailwindCSS, PostgreSQL, Docker
+**Experience:** 6+ years in web development
 
 ## 🎯 Project Goals
 
 This project was built as part of my portfolio for:
-- **International Client Acquisition** (USD/EUR revenue)
+- **International Client Acquisition**
 - **EB-2 NIW Immigration** demonstration
 - **SaaS Product Development** showcase
 - **Open Source Contribution** to the Laravel ecosystem
