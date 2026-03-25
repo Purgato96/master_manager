@@ -28,7 +28,6 @@
 Backend: Laravel 12 + PostgreSQL 16 + Redis 7
 Frontend: Vue 3 + TypeScript + TailwindCSS + Axios
 Infrastructure: Docker Compose + Laravel Sanctum
-Development: Mailpit (fake SMTP) + Vite
 ```
 
 ## 🚀 Quick Start (Docker)
@@ -63,39 +62,6 @@ docker compose exec backend php artisan migrate
 | **Backend API** | http://localhost:8000 |
 | **Admin Dashboard** | http://localhost:3000/admin |
 
-## 🔑 Getting Started with API
-
-### 1. Create API Key (client)
-```bash
-curl -X POST http://localhost:8000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "My App",
-    "email": "app@mycompany.com"
-  }'
-```
-
-**Response:**
-```json
-{
-  "message": "API Key created successfully!",
-  "api_key": "abc123xyz789...",
-  "client_id": 1
-}
-```
-
-⚠️ **Save this key! It's shown only once.**
-
-### 2. Use in Headers
-```bash
-# Option 1: X-API-KEY header
-curl -H "X-API-KEY: your_key_here" \
-  http://localhost:8000/api/data-items
-
-# Option 2: Bearer token
-curl -H "Authorization: Bearer your_key_here" \
-  http://localhost:8000/api/data-items
-```
 
 ## 🏗️ Architecture
 
@@ -197,43 +163,6 @@ master_manager/
 | `GET` | `/api/stats` | Get statistics | ✅ |
 | `GET` | `/api/public/data-items` | Public data access | ❌ |
 
-## 📊 Database Schema
-
-### ApiClients Table
-```sql
-- id: bigint (PK)
-- name: string
-- email: string (unique)
-- plain_key: string (nullable)
-- api_key: string (unique, hashed)
-- requests_count: integer
-- is_active: boolean
-- created_at: timestamp
-- updated_at: timestamp
-```
-
-### DataSources Table
-```sql
-- id: bigint (PK)
-- name: string
-- url: string
-- fetch_interval: integer (minutes)
-- is_active: boolean
-- last_fetch_at: timestamp (nullable)
-- created_at: timestamp
-- updated_at: timestamp
-```
-
-### DataItems Table
-```sql
-- id: bigint (PK)
-- data_source_id: bigint (FK)
-- raw_data: jsonb
-- processed_data: jsonb
-- external_id: string (nullable)
-- created_at: timestamp
-- updated_at: timestamp
-```
 
 ## ⚙️ Environment Configuration
 
