@@ -4,11 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
-    public function up(): void {
+    public function up(): void
+    {
         Schema::create('tck_status', function (Blueprint $table) {
             $table->id();
             $table->comment('Tabela de status dos tickets');
@@ -20,7 +22,6 @@ return new class extends Migration {
             $table->string('team', 10)->index('idx_tck_status_team')->comment('Equipe responsável pelo ticket');
             $table->string('id_milvus', 10)->index('idx_tck_status_id_milvus')->comment('Identificador Milvus relacionado ao ticket');
 
-            // Foreign Keys
             $table->foreign('tck_num')->references('tck_num')->on('cha_ab')
                 ->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('mail')->references('mail')->on('cad_user')
@@ -36,7 +37,8 @@ return new class extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('tck_status');
     }
 };
