@@ -9,7 +9,6 @@ import router from './router'
 const app = createApp(App)
 
 app.component('MetricCard', () => import('./components/MetricCard.vue'))
-app.component('ChartCard', () => import('./components/ChartCard.vue'))
 app.component('ApiTable', () => import('./components/ApiTable.vue'))
 app.component('ActivityLog', () => import('./components/ActivityLog.vue'))
 
