@@ -32,25 +32,25 @@ jobs:
   lint-backend:
     runs-on: ubuntu-latest
     env:
-      DB_CONNECTION: mysql
+      DB_CONNECTION: pgsql
       DB_HOST: 127.0.0.1
-      DB_PORT: 3306
+      DB_PORT: 5432
       DB_DATABASE: testes_db
-      DB_USERNAME: root
-      DB_PASSWORD: root
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
     services:
-      mysql:
-        image: mysql:8.0
+      postgres:
+        image: postgres:15 # Versão estável do Postgres
         env:
-          MYSQL_DATABASE: testes_db
-          MYSQL_ROOT_PASSWORD: root
+          POSTGRES_DB: testes_db
+          POSTGRES_PASSWORD: password
         ports:
-          - 3306:3306
+          - 5432:5432
         options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: 1. Baixar o código do repositório
@@ -60,7 +60,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql
           coverage: none
 
       - name: 3. Instalar dependências do Laravel
@@ -76,6 +76,7 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
+          # O Laravel usará as variáveis de ambiente 'env:' definidas no topo do job
           php artisan migrate --force
 
       - name: 6. Executando o PHPUnit
