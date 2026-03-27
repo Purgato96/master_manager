@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Services\MilvusService;
 use Illuminate\Http\JsonResponse;
 
-class MilvusIntegrationController extends Controller{
+class MilvusIntegrationController extends Controller
+{
     public function sync(MilvusService $milvusService): JsonResponse
     {
         try {
@@ -17,13 +17,13 @@ class MilvusIntegrationController extends Controller{
             $milvusService->syncClients();
 
             return response()->json([
-                'message' => 'Sincronização com Milvus concluída com sucesso.'
+                'message' => 'Sincronização com Milvus concluída com sucesso.',
             ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Falha na sincronização.',
-                'details' => $e->getMessage()
+                'details' => $e->getMessage(),
             ], 500);
         }
     }

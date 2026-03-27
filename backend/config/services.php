@@ -35,8 +35,8 @@ return [
         ],
     ],
 
-    'milvus' =>[
+    'milvus' => [
         'token' => env('MILVUS_TOKEN'),
-    ]
+    ],
 
 ];
