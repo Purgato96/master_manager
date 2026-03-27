@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MilvusIntegrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ Route::prefix('v1')->name('api.')->group(function () {
         ]);
     }
     );
+    Route::get('/milvus/sync', [MilvusIntegrationController::class, 'sync']);
 });
 
 Route::get('/v1/status', function () {

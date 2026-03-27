@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'milvus' =>[
+        'token' => env('MILVUS_TOKEN'),
+    ]
+
 ];
