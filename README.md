@@ -1,6 +1,6 @@
 # Master Manager System
 
-![Laravel](https://img.shields.io/badge/Laravel-12+-red.svg?logo=laravel&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-13+-red.svg?logo=laravel&logoColor=white)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3-green.svg?logo=vuedotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg?logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3+-cyan.svg?logo=tailwind-css)
@@ -25,7 +25,7 @@
 ## 🛠️ Tech Stack
 
 ```
-Backend: Laravel 12 + PostgreSQL 16 + Redis 7
+Backend: Laravel 13 + PostgreSQL 16 + Redis 7
 Frontend: Vue 3 + TypeScript + TailwindCSS + Axios
 Infrastructure: Docker Compose + Laravel Sanctum
 ```
@@ -110,7 +110,7 @@ docker compose exec backend php artisan migrate
 
 ```
 master_manager/
-├── backend/                      # Laravel 12 API
+├── backend/                      # Laravel 13 API
 │   ├── app/
 │   │   ├── Http/
 │   │   │   ├── Controllers/Api/
