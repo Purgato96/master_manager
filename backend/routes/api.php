@@ -17,6 +17,7 @@ Route::prefix('v1')->name('api.')->group(function () {
     }
     );
     Route::get('/milvus/sync', [MilvusIntegrationController::class, 'sync']);
+    Route::post('/search-emp', [MilvusIntegrationController::class, 'searchEmp']);
 });
 
 Route::get('/v1/status', function () {
