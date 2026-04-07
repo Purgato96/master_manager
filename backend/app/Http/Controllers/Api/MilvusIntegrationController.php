@@ -39,12 +39,12 @@ class MilvusIntegrationController extends Controller
         $empresaBusca = mb_strtoupper(trim($request->input('Empresa')), 'UTF-8');
 
         $empresa = CadEmp::select('nome_fantasia', 'cnpj', 'id_milvus', 'team')
-            ->where('nome_fantasia', 'like', '%' . $empresaBusca . '%')
+            ->where('nome_fantasia', 'like', '%'.$empresaBusca.'%')
             ->first();
 
-        if (!$empresa) {
+        if (! $empresa) {
             return response()->json([
-                'message' => 'Empresa não encontrada.'
+                'message' => 'Empresa não encontrada.',
             ], 404);
         }
 
