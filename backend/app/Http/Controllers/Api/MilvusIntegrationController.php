@@ -51,8 +51,8 @@ class MilvusIntegrationController extends Controller
         return response()->json([
             'NOME EMPRESA' => $empresa->nome_fantasia,
             'CNPJ' => $empresa->cnpj,
-            'ID MILVUS' => $empresa->id_milvus,
-            'TEAM' => $empresa->team,
+            'ID_Milvus' => $empresa->id_milvus,
+            'Equipe' => $empresa->team,
         ], 200);
     }
 }
