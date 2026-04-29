@@ -19,5 +19,7 @@ jobs:
           script: |
             cd /home/ubuntu/master_manager
             git pull origin main
-            docker compose up -d --build
-            docker exec purga_backend php artisan migrate --force
+            docker compose -f docker-compose.yml up -d --build
+            docker compose -f docker-compose.yml exec -T backend php artisan migrate --force
+            docker compose -f docker-compose.yml exec -T backend php artisan optimize
+            docker compose -f docker-compose.yml restart queue scheduler
