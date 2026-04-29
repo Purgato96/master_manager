@@ -1,4 +1,7 @@
-FROM node:24.0
+# ---- Stage 1: Build ----
+# node:20-slim usa glibc (Debian) ao invés de musl (Alpine)
+# Isso evita o bug do rollup: Cannot find module @rollup/rollup-linux-x64-musl
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
@@ -8,7 +11,20 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
+# ---- Stage 2: Produção ----
+FROM nginx:1.27-alpine
 
+# Remove config padrão do nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copia o build do Vue
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Config para SPA (Vue Router precisa de fallback para index.html)
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
